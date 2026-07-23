@@ -158,7 +158,7 @@ body {
   z-index: 1;
   top: -60px;
   left: -100px;
-  width: 420px;
+  width: 300px;
   pointer-events: none;
 }
 
@@ -587,7 +587,7 @@ body {
   z-index: 1;
   top: 0;
   left: -90px;
-  width: 340px;
+  width: 300px;
   pointer-events: none;
 }
 
@@ -596,7 +596,7 @@ body {
   z-index: 1;
   right: -70px;
   bottom: -260px;
-  width: 520px;
+  width: 400px;
   pointer-events: none;
 }
 
@@ -1167,7 +1167,7 @@ body {
 .portfolio-card img {
   display: block;
   width: 100%;
-  height: 420px;
+  height: 600px;
   object-fit: cover;
   border-radius: 20px;
 }
@@ -1314,10 +1314,20 @@ body {
   border-radius: 50%;
   background-color: #ff665f;
   opacity: 0.3;
+  cursor: pointer;
   transition: all 0.3s ease;
 }
 
-.pf-dot-active {
+.pf-dot-active,
+#portfolio-p0:checked~.portfolio-slider-wrap .portfolio-dots .pf-dot-1,
+#portfolio-p4:checked~.portfolio-slider-wrap .portfolio-dots .pf-dot-1,
+#portfolio-p8:checked~.portfolio-slider-wrap .portfolio-dots .pf-dot-1,
+#portfolio-p1:checked~.portfolio-slider-wrap .portfolio-dots .pf-dot-2,
+#portfolio-p5:checked~.portfolio-slider-wrap .portfolio-dots .pf-dot-2,
+#portfolio-p2:checked~.portfolio-slider-wrap .portfolio-dots .pf-dot-3,
+#portfolio-p6:checked~.portfolio-slider-wrap .portfolio-dots .pf-dot-3,
+#portfolio-p3:checked~.portfolio-slider-wrap .portfolio-dots .pf-dot-4,
+#portfolio-p7:checked~.portfolio-slider-wrap .portfolio-dots .pf-dot-4 {
   opacity: 1;
   width: 10px;
   height: 10px;
