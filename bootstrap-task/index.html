@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Feane — Fast Food Restaurant</title>
+
+<!-- Bootstrap 5 -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css">
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Yellowtail&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --accent:#f7a823;
+    --accent-dark:#e0951a;
+    --bg-dark:#0c0c0c;
+    --bg-mid:#181818;
+    --bg-light:#262626;
+    --text-muted:#c8c8c8;
+  }
+
+  *{box-sizing:border-box;}
+
+  body{
+    font-family:'Poppins', sans-serif;
+    background:var(--bg-dark);
+    color:#fff;
+    margin:0;
+  }
+
+  a{text-decoration:none;}
+
+  /* ---------- Hero wrapper ---------- */
+  .hero-wrapper{
+    position:relative;
+    overflow:hidden;
+    min-height:100vh;
+    background:linear-gradient(110deg,var(--bg-dark) 0%, var(--bg-mid) 55%, var(--bg-light) 100%);
+  }
+
+  .hero-bg{
+    position:absolute;
+    inset:0;
+    z-index:0;
+  }
+
+  .hero-bg img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    object-position:right center;
+  }
+
+  /* fade the left side of the photo into the page background for a seamless blend */
+  .hero-bg::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(90deg, var(--bg-dark) 0%, rgba(12,12,12,.85) 18%, rgba(12,12,12,0) 48%);
+  }
+
+  /* ---------- Header / Nav ---------- */
+  .site-header{
+    position:relative;
+    z-index:3;
+  }
+
+  .navbar{
+    padding:1.6rem 0;
+  }
+
+  .logo-font{
+    font-family:'Yellowtail', cursive;
+    font-size:2.1rem;
+    color:#fff !important;
+  }
+
+  .navbar-nav .nav-link{
+    color:#f2f2f2;
+    font-weight:500;
+    font-size:.92rem;
+    letter-spacing:.03em;
+    text-transform:uppercase;
+    margin:0 .9rem;
+    transition:color .2s ease;
+  }
+
+  .navbar-nav .nav-link.active,
+  .navbar-nav .nav-link:hover{
+    color:var(--accent);
+  }
+
+  .nav-icons a{
+    color:#fff;
+    font-size:1.05rem;
+    margin-right:1.2rem;
+    transition:color .2s ease;
+  }
+
+  .nav-icons a:hover{
+    color:var(--accent);
+  }
+
+  .btn-order-online{
+    background:var(--accent);
+    color:#181818;
+    font-weight:600;
+    font-size:.9rem;
+    padding:.65rem 1.7rem;
+    border-radius:50px;
+    white-space:nowrap;
+    transition:background .2s ease;
+  }
+
+  .btn-order-online:hover{
+    background:var(--accent-dark);
+    color:#181818;
+  }
+
+  .navbar-toggler{
+    border-color:rgba(255,255,255,.4);
+  }
+
+  .navbar-toggler-icon{
+    filter:invert(1);
+  }
+
+  /* ---------- Hero content ---------- */
+  .hero-section{
+    position:relative;
+    z-index:2;
+    display:flex;
+    align-items:center;
+    min-height:calc(100vh - 96px);
+    padding:3rem 0 4rem;
+  }
+
+  .hero-content{
+    max-width:600px;
+  }
+
+  .hero-content h1{
+    font-family:'Yellowtail', cursive;
+    font-weight:400;
+    font-size:4.2rem;
+    line-height:1.1;
+    margin-bottom:1.6rem;
+  }
+
+  .hero-content p{
+    color:var(--text-muted);
+    font-size:1rem;
+    line-height:1.85;
+    margin-bottom:2.2rem;
+  }
+
+  .btn-order-now{
+    display:inline-block;
+    background:var(--accent);
+    color:#181818;
+    font-weight:600;
+    padding:.85rem 2.3rem;
+    border-radius:50px;
+    transition:background .2s ease, transform .2s ease;
+  }
+
+  .btn-order-now:hover{
+    background:var(--accent-dark);
+    color:#181818;
+    transform:translateY(-2px);
+  }
+
+  /* ---------- Carousel indicators as dots ---------- */
+  #heroCarousel .carousel-indicators{
+    position:static;
+    justify-content:flex-start;
+    margin:2.8rem 0 0;
+  }
+
+  #heroCarousel .carousel-indicators [data-bs-target]{
+    width:11px;
+    height:11px;
+    border-radius:50%;
+    background-color:#fff;
+    opacity:.45;
+    margin:0 5px;
+    border:none;
+    text-indent:-9999px;
+  }
+
+  #heroCarousel .carousel-indicators .active{
+    background-color:var(--accent);
+    opacity:1;
+  }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 991.98px){
+    .navbar-collapse{
+      background:rgba(12,12,12,.97);
+      margin-top:1rem;
+      padding:1.2rem;
+      border-radius:10px;
+    }
+    .navbar-nav{
+      margin-bottom:1rem;
+    }
+    .navbar-nav .nav-link{
+      margin:.4rem 0;
+    }
+    .nav-icons{
+      justify-content:flex-start;
+      flex-wrap:wrap;
+      row-gap:.8rem;
+    }
+  }
+
+  @media (max-width: 767.98px){
+    .hero-bg img{
+      object-position:65% center;
+      opacity:.35;
+    }
+    .hero-bg::after{
+      background:linear-gradient(180deg, rgba(12,12,12,.5) 0%, var(--bg-dark) 75%);
+    }
+    .hero-content h1{
+      font-size:3rem;
+    }
+    .hero-section{
+      min-height:auto;
+      padding:2rem 0 3rem;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="hero-wrapper">
+
+  <!-- background photo -->
+  <div class="hero-bg">
+    <img src="https://raw.githubusercontent.com/learnwithfair/html-template-restaurant-feane/main/images/hero-bg.jpg" alt="Burger and fries on a wooden board">
+  </div>
+
+  <!-- header -->
+  <header class="site-header">
+    <div class="container">
+      <nav class="navbar navbar-expand-lg">
+        <a class="navbar-brand logo-font" href="#">Feane</a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navMenu">
+          <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+            <li class="nav-item"><a class="nav-link active" href="#">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Menu</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">About</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Book Table</a></li>
+          </ul>
+
+          <div class="d-flex align-items-center nav-icons">
+            <a href="#"><i class="bi bi-person"></i></a>
+            <a href="#"><i class="bi bi-cart3"></i></a>
+            <a href="#"><i class="bi bi-search"></i></a>
+            <a href="#" class="btn-order-online">Order Online</a>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- hero / carousel -->
+  <section class="hero-section">
+    <div class="container">
+      <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel">
+
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <div class="hero-content">
+              <h1>Fast Food Restaurant</h1>
+              <p>Doloremque, itaque aperiam facilis rerum, commodi, temporibus sapiente ad mollitia laborum quam quisquam esse error unde. Tempora ex doloremque, labore, sunt repellat dolore, iste magni quos nihil ducimus libero ipsam.</p>
+              <a href="#" class="btn-order-now">Order Now</a>
+            </div>
+          </div>
+
+          <div class="carousel-item">
+            <div class="hero-content">
+              <h1>Fast Food Restaurant</h1>
+              <p>Doloremque, itaque aperiam facilis rerum, commodi, temporibus sapiente ad mollitia laborum quam quisquam esse error unde. Tempora ex doloremque, labore, sunt repellat dolore, iste magni quos nihil ducimus libero ipsam.</p>
+              <a href="#" class="btn-order-now">Order Now</a>
+            </div>
+          </div>
+
+          <div class="carousel-item">
+            <div class="hero-content">
+              <h1>Fast Food Restaurant</h1>
+              <p>Doloremque, itaque aperiam facilis rerum, commodi, temporibus sapiente ad mollitia laborum quam quisquam esse error unde. Tempora ex doloremque, labore, sunt repellat dolore, iste magni quos nihil ducimus libero ipsam.</p>
+              <a href="#" class="btn-order-now">Order Now</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+          <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+          <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
